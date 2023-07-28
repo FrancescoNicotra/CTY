@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  # nextjs:
+  #   build: ./node_docker
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - project_network
+  mysql:
+    build: ./mysql_docker
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+    ports:
+      - "3306:3306"
+    networks:
+      - project_network
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: your_password
+    networks:
+      - project_network
+networks:
+  project_network:
+    driver: bridge
