@@ -5,7 +5,7 @@ const connection = createConnection({
   port: 3306,
   database: "social_network",
   user: "root",
-  password: "Lycaon5%",
+  password: "your_password",
 });
 
 export default connection;
