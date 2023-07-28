@@ -30,7 +30,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-/lib/db_connect/*
+/lib/db_connect/
 
 # typescript
 *.tsbuildinfo
