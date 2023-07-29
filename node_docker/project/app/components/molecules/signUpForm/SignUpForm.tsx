@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import InputText from "@/components/atoms/inputText/InputText";
-import SendButton from "@/components/atoms/sendButton/SendButton";
+import InputText from "@/app/components/atoms/inputText/InputText";
+import SendButton from "@/app/components/atoms/sendButton/SendButton";
 const bcrypt = require("bcryptjs");
 
 function SignUpForm() {
@@ -38,7 +38,7 @@ function SignUpForm() {
 
   return (
     <>
-      <div className=" bg-blue-100 w-1/2 h-screen flex flex-col items-center justify-center p-2">
+      <div className=" bg-blue-100 lg:w-1/2 sm:w-full h-screen flex flex-col items-center justify-center p-2">
         <InputText
           placeholder={"Nome Completo"}
           onChangeFunction={onChange}
@@ -59,9 +59,9 @@ function SignUpForm() {
         />
         <SendButton
           onClickFunction={sendData}
-          buttonText={"Invia"}
+          buttonText={"Registrati"}
           stileBottone={
-            " h-12 rounded-full border border-black w-1/5 bg-green-950 text-white my-4"
+            " h-12 rounded-full border border-black w-2/5 bg-green-950 text-white my-4"
           }
           key={0}
         />

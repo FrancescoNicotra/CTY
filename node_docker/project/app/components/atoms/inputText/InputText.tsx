@@ -16,7 +16,7 @@ function InputText(props: InputTextProps) {
       placeholder={placeholder}
       onChange={onChangeFunction}
       name={name}
-      className="border-2 border-black rounded-md p-2 my-4"
+      className="border-2 border-black rounded-md p-2 my-4 sm:w-1/2"
     />
   );
 }
