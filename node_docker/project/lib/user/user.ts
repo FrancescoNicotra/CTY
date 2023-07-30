@@ -1,12 +1,11 @@
 import connection from "../db_connect/connection";
+const bcrypt = require("bcryptjs");
 
 export default class User {
-  private name: string;
   private email: string;
   private password: string;
 
-  constructor(name: string, email: string, password: string) {
-    this.name = name;
+  constructor(email: string, password: string) {
     this.email = email;
     this.password = password;
   }
@@ -26,9 +25,25 @@ export default class User {
   public async read(email: string) {
     try {
       const rows = (await connection).execute(
-        `SELECT name FROM users WHERE email = ${email}`
+        `SELECT name FROM users WHERE email = '${email}'`
+        //                                 ^         ^
       );
       return rows;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // checkPassword
+  public async checkPassword(email: string, password: string) {
+    try {
+      const rows = (await connection).execute(
+        `SELECT password FROM users WHERE email = '${email}'`
+        //                                     ^         ^
+      );
+      const hash = rows;
+      const match = await bcrypt.compare(password, hash);
+      return match;
     } catch (error) {
       console.log(error);
     }

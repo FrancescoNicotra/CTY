@@ -5,24 +5,20 @@ import SendButton from "@/app/components/atoms/sendButton/SendButton";
 import { useRouter } from "next/navigation";
 const bcrypt = require("bcryptjs");
 
-function SignUpForm() {
+function SignInForm() {
   const router = useRouter();
-  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   function SignUp(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     try {
-      router.push("/sign-in");
+      router.push("/sign-up");
     } catch (error) {
       console.log(error);
     }
   }
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-    if (name === "nome") {
-      setNome(value.toLowerCase());
-    }
     if (name === "password") {
       setPassword(value);
     }
@@ -34,26 +30,18 @@ function SignUpForm() {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
-
   async function sendData(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     if (!checkEmail(email)) {
       alert("Email non valida");
       return;
     } else {
-      POST(nome, email, password);
+      POST(email, password);
     }
   }
-
   return (
     <>
-      <div className=" bg-blue-100 lg:w-1/2 sm:w-full h-screen flex flex-col items-center justify-center p-2">
-        <InputText
-          placeholder={"Nome Completo"}
-          onChangeFunction={onChange}
-          type={"text"}
-          name={"nome"}
-        />
+      <div className=" bg-blue-100 lg:w-1/2  sm:w-full h-screen flex flex-col items-center justify-center p-2">
         <InputText
           placeholder={"email"}
           onChangeFunction={onChange}
@@ -68,7 +56,7 @@ function SignUpForm() {
         />
         <SendButton
           onClickFunction={sendData}
-          buttonText={"Registrati"}
+          buttonText={"Accedi"}
           stileBottone={
             " h-12 rounded-full border border-black w-2/5 bg-green-950 text-white my-4"
           }
@@ -76,7 +64,7 @@ function SignUpForm() {
         />
         <SendButton
           onClickFunction={SignUp}
-          buttonText={"Accedi"}
+          buttonText={"Registrati"}
           stileBottone={
             " h-12 rounded-full border border-green-950 w-2/5 bg-white text-black my-4"
           }
@@ -87,11 +75,11 @@ function SignUpForm() {
   );
 }
 
-async function POST(name: string, email: string, password: string) {
-  const url = "http://localhost:3000/api/sign-up";
+async function POST(email: string, password: string) {
+  const url = "http://localhost:3000/api/sign-in";
   var salt = bcrypt.genSaltSync(10);
   var hashPassword = bcrypt.hashSync(password, salt);
-  const data = { name: name, email: email, password: hashPassword };
+  const data = { email: email, password: hashPassword };
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -104,4 +92,4 @@ async function POST(name: string, email: string, password: string) {
   }
 }
 
-export default SignUpForm;
+export default SignInForm;

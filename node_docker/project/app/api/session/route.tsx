@@ -25,7 +25,9 @@ async function POST(req: Request, res: Response) {
     name: "session",
     value: sessionNumber,
     httpOnly: true,
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day
     path: "/",
+    sameSite: "strict",
   });
   return NextResponse.json({ status: 200 });
 }
