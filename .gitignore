@@ -1,0 +1,5 @@
+
+node_docker/project/.env
+.DS_Store
+node_docker/.DS_Store
+node_docker/project/.eslintrc.json

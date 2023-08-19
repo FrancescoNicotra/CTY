@@ -1,5 +1,5 @@
 import React from "react";
-import IndexPage from "@/app/components/organism/SignIn/SignIn";
+import IndexPage from "@/components/organism/SignIn/SignIn";
 
 function Page() {
   return <IndexPage />;

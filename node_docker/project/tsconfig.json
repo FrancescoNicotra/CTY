@@ -35,7 +35,12 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/loading.tsx",
-    "app/middleware.js"
+    "app/middleware.js",
+    "lib/db_connect/connection.ts",
+    "lib/db_connect/connection.ts",
+    "lib/db_connect/connection.ts",
+    "middleware.js",
+    "lib/db_connect/connection.jsx"
   ],
   "exclude": [
     "node_modules"

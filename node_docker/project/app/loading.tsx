@@ -1,4 +1,4 @@
-import Loading from "@/app/components/atoms/loading/loading";
+import Loading from "@/components/atoms/loading/loading";
 
 import React from "react";
 
